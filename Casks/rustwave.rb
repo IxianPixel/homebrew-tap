@@ -1,12 +1,12 @@
 cask "rustwave" do
-  version "0.5.1"
+  version "0.5.3"
 
   on_arm do
-    sha256 "5672ffa3fd77a5c6c79f6f41455434ad5ba71c774ea6e92be31bb4af45aaa0c6"
+    sha256 "1f589f10c34f0bb94fb6c20ed708f38375fd251e7f68d8fe82558a011f518582"
     url "https://github.com/IxianPixel/rustwave/releases/download/v#{version}/rustwave-macos-arm-v#{version}.tar.gz"
   end
   on_intel do
-    sha256 "aeb3173d1d6af4eafe3bd7eef96deca5f142bd662bc594266310c9ae6bc94171"
+    sha256 "a26307fd560faeb85460c69b6f01ee76a08abd05a56058a2a829c4ea2e72a361"
     url "https://github.com/IxianPixel/rustwave/releases/download/v#{version}/rustwave-macos-intel-v#{version}.tar.gz"
   end
 
@@ -16,6 +16,9 @@ cask "rustwave" do
 
   app "Rustwave.app"
 
+  # The app is ad-hoc signed (no Apple Developer ID / notarization),
+  # so strip the quarantine flag on install to avoid Gatekeeper
+  # blocking launch.
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-dr", "com.apple.quarantine", "#{appdir}/Rustwave.app"]
