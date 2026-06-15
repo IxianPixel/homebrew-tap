@@ -20,4 +20,9 @@ cask "rustwave" do
     system_command "/usr/bin/xattr",
                    args: ["-dr", "com.apple.quarantine", "#{appdir}/Rustwave.app"]
   end
+
+  zap trash: [
+    "~/Library/Application Support/com.malgra.rustwave",
+    "~/Library/Saved Application State/com.rustwave.app.savedState",
+  ]
 end
