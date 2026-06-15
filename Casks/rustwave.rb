@@ -15,4 +15,9 @@ cask "rustwave" do
   homepage "https://github.com/IxianPixel/rustwave"
 
   app "Rustwave.app"
+
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Rustwave.app"]
+  end
 end
